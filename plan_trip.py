@@ -3,13 +3,17 @@ import os
 import pandas as pd
 from io import StringIO
 from datetime import datetime
-os.environ["OPENAI_API_KEY"] = "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"
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import (
     AIMessage,
     HumanMessage,
     SystemMessage
 )
+
+#setting api key:
+from api_keys import keys
+headers =keys()
+
 def get_user_input():
     destination = input("Please enter the destination: ")
     start_date = input("Please enter the start date (YYYY-MM-DD): ")
@@ -67,10 +71,7 @@ def get_search_data(location):
 
     querystring = {"q":location,"locale":"en_US"}
 
-    headers = {
-	    "X-RapidAPI-Key": "57f5107708msh55b46a107095710p14508cjsn4fec6559325e",
-	    "X-RapidAPI-Host": "hotels4.p.rapidapi.com"
-    }
+    headers = headers
 
     response = requests.get(url, headers=headers, params=querystring)
 

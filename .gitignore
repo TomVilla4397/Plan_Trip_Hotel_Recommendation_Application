@@ -1,0 +1,2 @@
+api_keys.py
+os.environ["OPENAI_API_KEY"] = "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"
