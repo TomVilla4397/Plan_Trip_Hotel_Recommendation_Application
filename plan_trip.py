@@ -3,6 +3,7 @@ import os
 import pandas as pd
 from io import StringIO
 from datetime import datetime
+from PyQt5.QtWidgets import QMessageBox
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import (
     AIMessage,
@@ -33,25 +34,7 @@ def get_user_input():
     transportation = input("Please enter the mode of transportation(e.g: bus, rental car, taxi, bicycle, walking, etc): ")
     
     return destination, start_date, end_date, adults_num, children_num, attraction, transportation
-def get_gui_input():
-    destination =""# input("Please enter the destination: ")
-    start_date =""# input("Please enter the start date (YYYY-MM-DD): ")
-    end_date =""# input("Please enter the end date (YYYY-MM-DD): ")
-    adults_num =""# int(input("Please enter the number of adults: "))
-    
-    # Check if the user is traveling with children
-    has_children = ""#input("Are you traveling with children? (yes/no): ").lower()
 
-    if has_children == 'yes':
-        # For children_num, if you expect multiple ages separated by comma.
-        children_num = "" #list(map(int, input("Please enter the ages of children separated by comma: ").split(',')))
-    else:
-        children_num = []
-    
-    attraction =  "" #input("Please enter attractions you are interested in(e.g: museums, theme parks, landmarks, nature trails, historical sites, etc): ")
-    transportation = "" #input("Please enter the mode of transportation(e.g: bus, rental car, taxi, bicycle, walking, etc): ")
-    
-    return destination, start_date, end_date, adults_num, children_num, attraction, transportation
 def open_chat(destination, start_date, end_date, adults_num, children_num, attraction, tranportaion):
     children_ages = " and ".join(str(age) for age in children_num)
     prompt = f'''
@@ -189,61 +172,6 @@ def process_data(df):
         hotel_data[location] = "No hotels found in {location}."
 
     return hotel_data
-def plan_trip_and_find_hotels(destination, start_date, end_date, adults_num, children_num, attraction, tranportaion):
-    # Get the chat response
-    chat_response = open_chat(destination, start_date, end_date, adults_num, children_num, attraction, tranportaion)
-
-    if "table:" not in chat_response:
-        print("Error: 'table:' delimiter not found in chat response.")
-        return
-
-    itinerary, table_str = chat_response.split("table:", 1)
-    
-    if not itinerary:
-        print("Error: Itinerary not found in chat response.")
-        return
-    # Print the trip itinerary
-    print("Trip Itinerary:")
-    days = itinerary.split("Day")
-    for day in days:
-        if day:
-            print(f"Day{day}")
-
-    df = pd.read_csv(StringIO(table_str.strip()))
-    df['from_date'] = pd.to_datetime(df['from_date'])
-    df['to_date'] = pd.to_datetime(df['to_date'])
-
-    hotel_data = {}
-    for _, row in df.iterrows():
-        location = row['location']
-        check_in = row['from_date'].strftime('%d-%m-%Y')
-        check_out = row['to_date'].strftime('%d-%m-%Y')
-
-        search_data = get_search_data(location)
-        gaiaID = get_gaiaID(search_data)
-        hotel_info = get_hotels(gaiaID, check_in, check_out, adults_num, children_num)
-
-        hotel_data[location] = (check_in, check_out, hotel_info if hotel_info else f"No hotels found in {location}")
-
-    # Print the hotel recommendations
-    print("\nHotel Recommendations:")
-    for location, info in hotel_data.items():
-        check_in, check_out, hotels = info
-        print(f"\nHotels in {location} from {check_in} to {check_out}:")
-        if isinstance(hotels, str):
-            print(hotels)
-        else:
-            print(f'{"Name:":<90} {"Price:":<30} {"Review:"}')
-            for hotel in hotels:
-                name = hotel['name']
-                price = hotel['price']['lead']['formatted']
-                review = hotel['reviews']['score']
-                print(f'{name:<90} {price:<30} {review}')
-
-# You can then use this function to get user input and pass it to open_chat function
-# destination, start_date, end_date, adults_num, children_num, attraction, transportation = get_user_input()
-# plan_trip_and_find_hotels(destination, start_date, end_date, adults_num, children_num, attraction, transportation)
-from PyQt5.QtWidgets import QMessageBox
 
 def plan_trip_and_find_hotels_gui(destination, start_date, end_date, adults_num, children_num, attraction, tranportaion):
     # Get the chat response
