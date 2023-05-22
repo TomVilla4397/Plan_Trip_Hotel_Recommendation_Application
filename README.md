@@ -1,4 +1,4 @@
-Trip Planner and Hotel Recommender
+##Trip Planner and Hotel Recommender
 This repository contains the source code for a Python application that helps users plan their trips and provides hotel recommendations based on their preferences. The application uses PyQt5 for the graphical user interface and leverages APIs to fetch trip itineraries and hotel data.
 
 Features
