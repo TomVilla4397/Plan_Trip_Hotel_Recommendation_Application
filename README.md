@@ -34,6 +34,8 @@ pip install -r requirements.txt
 4.The GUI window will appear, prompting you to enter trip details.
 5.Click "Submit" to generate the trip itinerary and hotel recommendations.
 
+Note: In the line of code from api_keys import keys, the API keys for OpenAI and RapidAPI are being imported. headers = keys() then sets the API key for the RapidAPI.
+
 
 ##Contribution 🤝
 Feel free to explore the code and modify it according to your needs. Contributions are welcome! If you encounter any issues or have suggestions for improvement, please open an issue in the repository.
