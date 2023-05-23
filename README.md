@@ -1,30 +1,46 @@
-##Trip Planner and Hotel Recommender
-This repository contains the source code for a Python application that helps users plan their trips and provides hotel recommendations based on their preferences. The application uses PyQt5 for the graphical user interface and leverages APIs to fetch trip itineraries and hotel data.
+# Trip Planner & Hotel Finder 🌍
 
-Features
-*User-friendly GUI for entering trip details and preferences
-*Retrieves trip itineraries and hotel recommendations from external APIs
-*Displays the trip itinerary and hotel recommendations in separate windows
-*Supports input validation and error handling
-*Utilizes pandas and NumPy libraries for data processing
+This Python application helps users plan their trips and provides hotel recommendations based on their preferences. It uses PyQt5 for the graphical user interface and leverages APIs to fetch trip itineraries and hotel data.
 
-Instructions
+## Features 🚀
 
-1.Make sure you have the necessary API keys for OpenAI and RapidAPI. Insert your API keys in the appropriate locations in the code.
-2.Open a terminal or command prompt.
-3.Navigate to the project directory.
-4.Run the following command to execute the application:
-python plan_trip_Gui.py
-5.The GUI window will appear, prompting you to enter trip details such as destination, start date, end date, number of adults, children, attractions, and transportation.
-6.Click "Submit" to generate the trip itinerary and hotel recommendations.
-7.The trip itinerary and the hotel recommendations will be displayed in separate windows.
-8.Review the trip itinerary and hotel recommendations to plan your trip effectively.
+- User-friendly GUI for entering trip details and preferences.
+- Retrieves trip itineraries and hotel recommendations from external APIs.
+- Displays the trip itinerary and hotel recommendations in separate windows.
+- Supports input validation and error handling.
+- Utilizes pandas and NumPy libraries for data processing.
 
-Feel free to explore the code and modify it according to your needs. Contributions are welcome!
+## Dependencies 📦
 
-Please note that this application requires the necessary API keys to function properly. Make sure to obtain the API keys and insert them in the appropriate locations in the code.
+- Python 3.7 or newer
+- [pandas](https://pandas.pydata.org/)
+- [requests](https://docs.python-requests.org/en/latest/)
+- [PyQt5](https://pypi.org/project/PyQt5/)
+- [langchain](https://pypi.org/project/langchain/)
+- [NumPy](https://numpy.org/)
 
-Issues and Suggestions
-If you encounter any issues or have suggestions for improvement, please open an issue in the repository. Your feedback is valuable in enhancing the functionality and usability of the application.
+## Installation 🛠
+
+1. Clone this repository to your local machine.
+2. Install the necessary dependencies using pip:
+
+```sh
+pip install -r requirements.txt
+
+## Usage 💡
+1.Replace "insert your key here" in the api_keys.py file with your actual API keys.
+2.Open a terminal or command prompt and navigate to the project directory.
+3.Run the following command to execute the application: python plan_trip_Gui.py.
+4.The GUI window will appear, prompting you to enter trip details.
+5.Click "Submit" to generate the trip itinerary and hotel recommendations.
+
+
+##Contribution 🤝
+Feel free to explore the code and modify it according to your needs. Contributions are welcome! If you encounter any issues or have suggestions for improvement, please open an issue in the repository.
+
+License ⚖️
+This project is open-source and available under the MIT License.
 
 Happy trip planning!
+
+
